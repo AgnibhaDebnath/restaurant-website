@@ -4,7 +4,7 @@ import Shorshe_Aloo from "../assets/menu/Shorshe_Aloo.jpg"
 import Chicken_Kosha from "../assets/menu/Chicken_Kosha.jpg"
 import Ilish_Bhapa from "../assets/menu/Ilish_Bhapa.png"
 import Mutton_currry from "../assets/menu/Mutton_curry.jpg"
-import Mutton_kosha from "../assets/menu/Mutton_Kosha.png"
+import Mutton_kosha from "../assets/menu/Mutton_kosha.png"
 export const menuItems = [
     {
         id: 1,
