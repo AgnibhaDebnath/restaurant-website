@@ -15,7 +15,7 @@ const About = () => {
                         <p className='pl-2 text-base min-[487px]:text-lg min-[1100px]:text-xl max-w-2xl text-gray-600 leading-relaxed'>We bring the rich taste of Bengal to your plate with recipes passed down through generations.</p>
 
                         <p className='pl-2 text-base min-[487px]:text-lg min-[1000px]:text-xl max-w-2xl text-gray-600 leading-relaxed'>Every dish is prepared using fresh ingredients, traditional spices, and a passion for authentic cooking.</p>
-                        <ul className="mt-4 space-y-2 font-medium text-lg flex  gap-3 flex-col  text-gray-600">
+                        <ul className="mt-4 space-y-2 font-medium text-base min-[487px]:text-lg flex  gap-3 flex-col  text-gray-600">
                             <li>👨‍🍳 Authentic Recipes</li>
                             <li>🌿 Fresh Ingredients</li>
                             <li>🍛 Traditional Taste</li>
