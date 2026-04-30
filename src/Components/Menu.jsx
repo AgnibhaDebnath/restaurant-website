@@ -47,7 +47,7 @@ const Menu = () => {
                             <span className="absolute left-10 top-11 min-[500px]:left-13 bg-[#f59e0b] text-white text-xs px-2 py-1 rounded-xl font-[inter]">
                                 {item.category}
                             </span>
-                            <div className='py-1 min-[432px]:py-3 flex justify-between pr-4'>
+                            <div className='py-1 min-[432px]:py-3 flex justify-between pr-0 min-[385px]:pr-4 items-center'>
                                 <h1 className='font-extrabold text-2xl font-[inter]'>{item.name}</h1>
                                 <h1 className='font-bold text-[#f59e0b] font-[inter] text-xl'>{item.price}</h1>
                             </div>
