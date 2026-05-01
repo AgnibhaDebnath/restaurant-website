@@ -22,7 +22,7 @@ const About = () => {
                         </ul>
                     </div>
 
-                    <img src={About_section_image} className='w-90 min-[1100px]:w-100 h-60 min-[1100px]:h-70 object-cover rounded-2xl shadow-2xl  hover:scale-105 transition duration-200' alt="About section image" />
+                    <img src={About_section_image} className='w-90 min-[1100px]:w-100 h-60 min-[1100px]:h-70 object-cover rounded-4xl shadow-2xl  hover:scale-105 transition duration-200' alt="About section image" />
                 </div>
             </div>
         </section>
