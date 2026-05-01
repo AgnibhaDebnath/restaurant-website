@@ -5,7 +5,7 @@ const Hero = () => {
         <section className='w-full h-screen relative'>
 
 
-            <img priority src={Hero_image} className='h-full top-0 w-full object-cover ' />
+            <img src={Hero_image} className='h-full top-0 w-full object-cover ' />
             <div className="absolute top-0 left-0 w-full h-full bg-black/50"></div>
             <div className='absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 w-full '>
                 <div className='flex justify-center '>
