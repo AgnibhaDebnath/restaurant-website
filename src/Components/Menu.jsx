@@ -43,7 +43,7 @@ const Menu = () => {
                 {filteredMenu.map((item) => (
                     <>
                         {< div key={item.id} className='relative w-80 min-[385px]:w-90 min-[432px]:w-100 min-[500px]:w-115 rounded-4xl px-7 min-[500px]:px-10 pt-8 pb-3 bg-white shadow-xl overflow-hidden hover:shadow-2xl' >
-                            <img src={item.imageURL} alt="Menu img" className='w-full h-45 min-[385px]:h-50 min-[432px]:h-60 object-cover rounded-3xl hover:scale-105 transaction duration-200' />
+                            <img loading="lazy" src={item.imageURL} alt="Menu img" className='w-full h-45 min-[385px]:h-50 min-[432px]:h-60 object-cover rounded-3xl hover:scale-105 transaction duration-200' />
                             <span className="absolute left-10 top-11 min-[500px]:left-13 bg-[#f59e0b] text-white text-xs px-2 py-1 rounded-xl font-[inter]">
                                 {item.category}
                             </span>
