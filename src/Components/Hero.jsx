@@ -1,6 +1,13 @@
 import React from 'react'
 import Hero_image from "../assets/images/Hero_image.jpg"
 const Hero = () => {
+
+    const handleScroll = (id) => {
+        document.getElementById(id).scrollIntoView({
+            behavior: "smooth"
+        });
+    };
+
     return (
         <section className='w-full h-screen relative'>
 
@@ -15,7 +22,7 @@ const Hero = () => {
                     <h2 className='text-center font-semibold text-white text-xs min-[575px]:text-sm min-[700px]:text-base min-[810px]:text-lg font-[inter]'>Experience traditional recipes made with love. Book your table and enjoy a true taste of Bengal.</h2>
                 </div>
                 <div className='flex justify-center mt-5'>
-                    <button className='px-10 py-1.5 cursor-pointer hover:scale-105  rounded-lg text-white font-semibold bg-[#f59e0b] font-[inter] text-lg active:scale-95 transition duration-300'>Book Table</button>
+                    <button onClick={() => handleScroll("contact")} className='px-10 py-1.5 cursor-pointer hover:scale-105  rounded-lg text-white font-semibold bg-[#f59e0b] font-[inter] text-lg  max-[768px]:active:scale-95 transition duration-300'>Book Table</button>
                 </div>
             </div>
         </section>
