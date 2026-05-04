@@ -25,7 +25,8 @@ const Navbar = () => {
             to: "contact"
         },
         {
-            label: "Book Table"
+            label: "Book Table",
+            to: "contact"
         }
     ]
     const handleScroll = (id) => {
@@ -44,7 +45,7 @@ const Navbar = () => {
                         <ul className="flex gap-10 min-[990px]:gap-15 justify-between items-center">
                             {navItems.map((item) => (
                                 <>
-                                    {item.label == "Book Table" ? <li className="font-semibold " key={item.label}><button style={{ backgroundColor: "#f59e0b" }} className="px-3 py-1 rounded-lg cursor-pointer text-white">{item.label}</button></li> : <li className="text-white hover:text-[#f59e0b] font-semibold " key={item.label}><button className="cursor-pointer" onClick={() => handleScroll(item.to)}>{item.label}</button></li>}
+                                    {item.label == "Book Table" ? <li className="font-semibold " key={item.label}><button onClick={() => handleScroll(item.to)} style={{ backgroundColor: "#f59e0b" }} className="px-3 py-1 rounded-lg cursor-pointer text-white">{item.label}</button></li> : <li className="text-white hover:text-[#f59e0b] font-semibold " key={item.label}><button className="cursor-pointer" onClick={() => handleScroll(item.to)}>{item.label}</button></li>}
                                 </>
                             ))}
                         </ul>
