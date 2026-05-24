@@ -1,5 +1,9 @@
 import React from 'react'
-import Hero_image from "../assets/images/Hero_image.jpg"
+import Hero_image_1 from "../assets/images/Hero_image_1.webp"
+import Hero_image_2 from "../assets/images/Hero_image_2.webp"
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import { Autoplay } from "swiper/modules";
 const Hero = () => {
 
     const handleScroll = (id) => {
@@ -8,23 +12,48 @@ const Hero = () => {
         });
     };
 
+    const heroSlides = [{
+        id: 1,
+        image: Hero_image_1,
+        heading: "Authentic Bengali Flavors, Served Fresh",
+        subHeading: "Experience traditional Bengali recipes crafted with passion and rich flavors.",
+
+    },
+    {
+        id: 2,
+        image: Hero_image_2,
+        heading: "A Cozy Dining Experience Awaits",
+        subHeading: "Enjoy warm ambience, elegant interiors, and memorable dining moments.",
+    },
+    ]
     return (
-        <section className='w-full h-screen relative'>
+        <section className='w-full h-[70vh] sm:h-screen relative'>
+            <Swiper
+                modules={[Autoplay]}
+                autoplay={{ delay: 4000 }}
+                loop={true}
+                className='h-full'
+            >
+                {heroSlides.map((slide) => (
 
+                    <SwiperSlide key={slide.id}>
+                        <img src={slide.image} className={`h-full top-0 w-full object-cover ${slide.id == 1 ? "object-[70%_25%] sm:object-[center_70%]" : "object-[40%_center]"}`} />
+                        <div className="absolute top-0 left-0 w-full h-full bg-black/60"></div>
+                        <div className='absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 w-full '>
+                            <div className='flex justify-center '>
+                                <h1 className='text-[1.2rem] min-[375px]:text-xl min-[440px]:text-2xl min-[550px]:text-3xl min-[675px]:text-4xl min-[880px]:text-5xl min-[1150px]:text-6xl text-white font-[inter] font-bold text-center'>{slide.heading}</h1>
+                            </div>
+                            <div className='flex justify-center mt-5 px-1'>
+                                <h2 className='text-center font-semibold text-white text-xs min-[575px]:text-sm min-[700px]:text-base min-[810px]:text-lg font-[inter]'>{slide.subHeading}</h2>
+                            </div>
+                            <div className='flex justify-center mt-5'>
+                                <button onClick={() => handleScroll("contact")} className='px-8 sm:px-10 py-1.5 cursor-pointer hover:scale-105  rounded-lg text-white font-semibold bg-[#f59e0b] font-[inter] text-base sm:text-lg  max-[768px]:active:scale-95 transition duration-300'>Book Table</button>
+                            </div>
+                        </div>
+                    </SwiperSlide>
 
-            <img src={Hero_image} className='h-full top-0 w-full object-cover object-center' />
-            <div className="absolute top-0 left-0 w-full h-full bg-black/60"></div>
-            <div className='absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 w-full '>
-                <div className='flex justify-center '>
-                    <h1 className='text-[1.2rem] min-[375px]:text-xl min-[440px]:text-2xl min-[550px]:text-3xl min-[675px]:text-4xl min-[880px]:text-5xl min-[1150px]:text-6xl text-white font-[inter] font-bold text-center'>Authentic Bengali Flavors, Served Fresh</h1>
-                </div>
-                <div className='flex justify-center mt-5 px-1'>
-                    <h2 className='text-center font-semibold text-white text-xs min-[575px]:text-sm min-[700px]:text-base min-[810px]:text-lg font-[inter]'>Experience traditional recipes made with love. Book your table and enjoy a true taste of Bengal.</h2>
-                </div>
-                <div className='flex justify-center mt-5'>
-                    <button onClick={() => handleScroll("contact")} className='px-10 py-1.5 cursor-pointer hover:scale-105  rounded-lg text-white font-semibold bg-[#f59e0b] font-[inter] text-lg  max-[768px]:active:scale-95 transition duration-300'>Book Table</button>
-                </div>
-            </div>
+                ))}
+            </Swiper>
         </section>
     )
 }
