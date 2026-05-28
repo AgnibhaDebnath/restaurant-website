@@ -25,7 +25,7 @@ const Contact = () => {
 
                 <div className='w-full max-w-5xl mx-auto bg-white rounded-4xl shadow-lg p-6 lg:p-10 grid grid-cols-1 lg:grid-cols-2 gap-10'>
                     <div className="flex max-[450px]:items-start max-[1024px]:items-center flex-col justify-center">
-                        <div className="flex flex-col gap-6 w-85">
+                        <div className="flex flex-col gap-6 ">
                             <div className="flex gap-2 max-[450px]:pl-5">
                                 <div >
                                     <div className=" rounded-2xl bg-[#f59e0b] flex justify-center items-center w-13 h-13">
