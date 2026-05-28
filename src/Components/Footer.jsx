@@ -5,34 +5,30 @@ const Footer = () => {
         });
     };
     return (
-
-
         <footer className="bg-gray-900 text-gray-300 py-10 px-5 font-[inter]">
             <div className="max-w-6xl mx-auto grid md:grid-cols-3 gap-8">
-
-
-                <div>
-                    <h2 className="text-xl font-semibold text-white">
+                <div className="">
+                    <h2 className="text-2xl font-semibold text-white">
                         Royal Bengali Kitchen
                     </h2>
-                    <p className="mt-2 text-sm">
+                    <p className="mt-2 text-base tracking-wide">
                         Authentic flavors, crafted with tradition
                     </p>
                 </div>
 
 
                 <div>
-                    <h3 className="text-white font-semibold mb-2">Quick Links</h3>
-                    <ul className="space-y-2">
-                        <li><button onClick={() => handleScroll("about")} className="cursor-pointer hover:text-[#f59e0b]">About</button></li>
-                        <li><button onClick={() => handleScroll("menu")} className="cursor-pointer hover:text-[#f59e0b]">Menu</button></li>
-                        <li><button onClick={() => handleScroll("contact")} className="cursor-pointer hover:text-[#f59e0b]">Contact</button></li>
+                    <h2 className="text-white font-semibold mb-2 text-xl">Quick Links</h2>
+                    <ul className="space-y-2 text-lg ml-1.5">
+                        <li><button aria-label="Go to About section" onClick={() => handleScroll("about")} className="cursor-pointer hover:text-[#f59e0b] font-medium active:scale-95 active:text-[#f59e0b] transition duration-300">About</button></li>
+                        <li><button aria-label="Go to Menu section" onClick={() => handleScroll("menu")} className="cursor-pointer hover:text-[#f59e0b] font-medium active:scale-95 active:text-[#f59e0b] transition duration-300">Menu</button></li>
+                        <li><button aria-label="Go to Contact section" onClick={() => handleScroll("contact")} className="cursor-pointer hover:text-[#f59e0b] font-medium active:scale-95 active:text-[#f59e0b] transition duration-300">Contact</button></li>
                     </ul>
                 </div>
 
             </div>
 
-            <div className="text-center text-sm mt-8 border-t border-gray-700 pt-4">
+            <div className="text-center text-[.9rem] min-[385px]:text-base mt-8 border-t border-gray-700 pt-4">
                 © 2026 Royal Bengali Kitchen. All rights reserved.
             </div>
         </footer>
