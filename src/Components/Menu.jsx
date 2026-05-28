@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { menuItems } from '../data/menuItems'
+import { LuChefHat } from "react-icons/lu";
 const Menu = () => {
     const [category, setCategory] = useState("Popular");
     const categories = ["Popular", ...new Set(menuItems.map((item) => item.category))];
@@ -27,16 +28,28 @@ const Menu = () => {
         var filteredMenu = menuItems.filter(item => item.category == category);
     }
     return (
-        <section id='menu' className='bg-[#f9fafb] scroll-mt-20 pt-5 pb-8'>
-            <div className='flex justify-center py-3'>
-                <h1 className=' text-4xl min-[450px]:text-5xl text-center font-bold font-[inter]'>Explore Our Menu</h1>
+        <section id='menu' className='bg-[#f9fafb] scroll-mt-20 pt-5 pb-8 '>
+            <div className='flex justify-center items-center '>
+                ────  <LuChefHat className='text-orange-500' size={50} /> ────
             </div>
-            <div className='flex justify-center font-[inter]'>
-                <h2 className='text-lg'>Fresh Bengali Flavors Daily</h2>
+
+
+            <div className='flex justify-center items-center my-4'>
+
+                <h1 className="font-medium font-[inter] text-xl min-[400px]:text-3xl">
+                    Traditional <span className='bg-linear-to-r from-orange-500 to-amber-400  text-transparent bg-clip-text'>Bengali</span> Cuisine
+                </h1>
+
             </div>
+            <div className='flex justify-center py-2'>
+                <h1 className='text-3xl min-[400px]:text-4xl min-[450px]:text-5xl text-center font-bold font-[inter] bg-linear-to-r from-orange-500 to-amber-400 text-transparent bg-clip-text py-1'>Explore Our  Signature Menu</h1>
+            </div>
+
             <div className='flex gap-5 md:gap-10 min-[845px]:gap-15 justify-start min-[895px]:justify-center mt-2 py-5 mb-2 px-2  overflow-x-auto'>
                 {categories.map((item) => (
-                    <button onClick={() => setCategory(item)} className={`px-5 py-1.5 cursor-pointer rounded-2xl font-semibold ${category == item ? "bg-[#f59e0b] text-white" : "text-black bg-gray-200 "}  font-[inter] whitespace-nowrap hover:scale-105 transition duration-75`} key={item}>{item}</button>
+                    <button onClick={() => setCategory(item)} className={`px-5 py-1.5 cursor-pointer rounded-3xl font-semibold ${category == item ? "bg-orange-500 text-white" : "bg-white border border-gray-200 "}  font-[inter] whitespace-nowrap hover:scale-105 shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1
+hover:bg-orange-500
+hover:text-white`} key={item}>{item}</button>
                 ))}
             </div>
             <div className='w-full grid grid-cols-1 min-[988px]:grid-cols-2 min-[1450px]:grid-cols-3 place-items-center justify-items-center gap-10 px-10'>

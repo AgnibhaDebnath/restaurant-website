@@ -45,7 +45,7 @@ const Navbar = () => {
                         <ul className="flex gap-10 min-[990px]:gap-15 justify-between items-center">
                             {navItems.map((item) => (
                                 <>
-                                    {item.label == "Book Table" ? <li className="font-semibold " key={item.label}><button onClick={() => handleScroll(item.to)} style={{ backgroundColor: "#f59e0b" }} className="px-3 py-1 rounded-lg cursor-pointer text-white">{item.label}</button></li> : <li className="text-white hover:text-[#f59e0b] font-semibold " key={item.label}><button className="cursor-pointer" onClick={() => handleScroll(item.to)}>{item.label}</button></li>}
+                                    {item.label == "Book Table" ? <li className="font-semibold " key={item.label}><button onClick={() => handleScroll(item.to)} style={{ backgroundColor: "#f59e0b" }} className="px-3 py-1 rounded-xl cursor-pointer text-white hover:scale-105 hover:shadow-lgtransition-all duration-300">{item.label}</button></li> : <li className="text-white hover:text-orange-400 transition-all duration-300 font-semibold hover:-translate-y-px" key={item.label}><button className="cursor-pointer" onClick={() => handleScroll(item.to)}>{item.label}</button></li>}
                                 </>
                             ))}
                         </ul>
@@ -61,7 +61,7 @@ const Navbar = () => {
                         <ul className="flex flex-col gap-8 items-center text-xl">
                             {navItems.map((item) => (
                                 <>
-                                    {item.label == "Book Table" ? <li className="font-semibold " key={item.label}><button style={{ backgroundColor: "#f59e0b" }} className="px-5 py-1.5 rounded-2xl cursor-pointer text-white hover:scale-105 transition duration-300 active:scale-95 ">{item.label}</button></li> : <li className="text-white hover:text-[#f59e0b] font-semibold  active:scale-95" key={item.label}><button className="cursor-pointer active:text-[#f59e0b]" onClick={() => handleScroll(item.to)}>{item.label}</button></li>}
+                                    {item.label == "Book Table" ? <li className="font-semibold " key={item.label}><button onClick={() => handleScroll("contact")} style={{ backgroundColor: "#f59e0b" }} className="px-5 py-1.5 rounded-2xl cursor-pointer text-white hover:scale-105 transition duration-300 active:scale-95 ">{item.label}</button></li> : <li className="text-white hover:text-[#f59e0b] font-semibold  active:scale-95" key={item.label}><button className="cursor-pointer active:text-[#f59e0b]" onClick={() => handleScroll(item.to)}>{item.label}</button></li>}
                                 </>
                             ))}
                         </ul>

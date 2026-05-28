@@ -43,18 +43,18 @@ const Hero = () => {
                         <div className="absolute inset-0 bg-black/60 z-10"></div>
                         <div className='absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 w-full z-20'>
                             <div className='flex justify-center '>
-                                <h1 className='text-[1.2rem] min-[375px]:text-xl min-[440px]:text-2xl min-[550px]:text-3xl min-[675px]:text-4xl min-[880px]:text-5xl min-[1150px]:text-6xl text-white font-[inter] font-bold text-center'>{slide.heading.split(" ").map((word, index) => (
-                                    <span key={index} className={`${colorWords.includes(word) ? "text-[#f59e0b]" : ""}`}>
+                                <h1 className='text-[1.2rem] min-[375px]:text-xl min-[440px]:text-2xl min-[550px]:text-3xl min-[675px]:text-4xl min-[880px]:text-5xl min-[1150px]:text-6xl text-white font-[inter] font-bold text-center drop-shadow-lg'>{slide.heading.split(" ").map((word, index) => (
+                                    <span key={index} className={`${colorWords.includes(word) ? "bg-linear-to-r from-orange-500 to-amber-400 bg-clip-text text-transparent" : ""}`}>
                                         {console.log(word)}
                                         {word}{" "}
                                     </span>
                                 ))}</h1>
                             </div>
                             <div className='flex justify-center mt-5 px-1'>
-                                <h2 className='text-center font-[inter] tracking-wide font-semibold  text-white text-xs min-[575px]:text-sm min-[700px]:text-base min-[810px]:text-xl '>{slide.subHeading}</h2>
+                                <h2 className='text-center font-[inter] tracking-wide font-semibold  text-white text-xs min-[575px]:text-sm min-[700px]:text-base min-[810px]:text-xl drop-shadow-lg'>{slide.subHeading}</h2>
                             </div>
                             <div className='flex justify-center mt-5'>
-                                <button onClick={() => handleScroll("contact")} className='px-8 sm:px-10 py-1.5 cursor-pointer hover:scale-105  rounded-lg text-white font-semibold bg-[#f59e0b] font-[inter] text-base sm:text-lg  max-[768px]:active:scale-95 transition duration-300'>Book Table</button>
+                                <button onClick={() => handleScroll("contact")} className='px-8 sm:px-10 py-1.5 cursor-pointer hover:scale-105  rounded-lg text-white font-semibold bg-linear-to-r from-orange-500 to-amber-400 font-[inter] text-base sm:text-lg  max-[768px]:active:scale-95 transition duration-300 hover:-translate-y-1'>Book Table</button>
                             </div>
                         </div>
                     </SwiperSlide>
