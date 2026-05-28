@@ -1,10 +1,10 @@
-import Rosogolla from "../assets/menu/Rosogolla.jpg"
-import Masala_chai from "../assets/menu/Masala_chai.jpg"
-import Shorshe_Aloo from "../assets/menu/Shorshe_Aloo.jpg"
-import Chicken_Kosha from "../assets/menu/Chicken_Kosha.jpg"
-import Ilish_Bhapa from "../assets/menu/Ilish_Bhapa.png"
-import Mutton_currry from "../assets/menu/Mutton_curry.jpg"
-import Mutton_kosha from "../assets/menu/Mutton_kosha.png"
+import Rosogolla from "../assets/menu/Rosogolla.webp"
+import Masala_chai from "../assets/menu/Masala_chai.webp"
+import Shorshe_Aloo from "../assets/menu/Shorshe_Aloo.webp"
+import Chicken_Kosha from "../assets/menu/Chicken_Kosha.webp"
+import Ilish_Bhapa from "../assets/menu/Ilish_Bhapa.webp"
+import Mutton_currry from "../assets/menu/Mutton_curry.webp"
+import Mutton_kosha from "../assets/menu/Mutton_kosha.webp"
 export const menuItems = [
     {
         id: 1,
@@ -38,7 +38,7 @@ export const menuItems = [
         id: 5,
         name: "Rosogolla",
         category:"Desserts",
-        price: "₹30 (per peice)",
+        price: "₹30 (per piece)",
         imageURL:Rosogolla 
     },
     {
