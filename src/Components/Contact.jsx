@@ -1,25 +1,19 @@
-
 import { useState } from "react";
-import DatePicker from "react-datepicker";
-import "../App.css";
-import "react-datepicker/dist/react-datepicker.css";
-import { FaCalendarAlt, FaPhoneAlt } from "react-icons/fa";
+
+import { FaPhoneAlt } from "react-icons/fa";
 import { CiLocationOn } from "react-icons/ci";
 import { LuAlarmClock } from "react-icons/lu";
 import { MdEmail } from "react-icons/md";
-import { IoIosArrowDown } from "react-icons/io";
+
 const Contact = () => {
-    const [name, setName] = useState("")
-    const [phoneNumber, setPhoneNumber] = useState("")
-    const [date, setDate] = useState(null);
-    const [time, setTime] = useState(null);
+
     return (
-        <section id="contact" className='font-[inter] bg-gray-50 pb-10 scroll-m-15'>
+        <section id="contact" className='font-[inter] bg-orange-50 pb-10 scroll-m-15'>
             <div className='flex justify-center py-5'>
-                <h1 className='text-center font-black text-4xl min-[500px]:text-5xl tracking-wide'>Contact Us</h1>
+                <h1 className='text-center font-black text-3xl sm:text-4xl lg:text-5xl tracking-wide text-gray-900'>Contact Us</h1>
             </div>
             <div className='flex justify-center py-3 px-1'>
-                <h2 className='font-semibold text-center tracking-wide text-base min-[435px]:text-lg min-[490px]:text-xl text-gray-600'>Experience authentic Bengali hospitality with every visit</h2>
+                <h2 className='font-semibold text-center tracking-wide text-base min-[435px]:text-lg min-[490px]:text-xl text-gray-700'>Experience authentic Bengali hospitality with every visit</h2>
             </div>
             <div className='w-full flex items-center '>
 
