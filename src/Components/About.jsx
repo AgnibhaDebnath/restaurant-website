@@ -2,12 +2,12 @@ import React from 'react'
 import About_section_image from "../assets/images/About_section_image.jpg"
 const About = () => {
     return (
-        <section id='about' className=' font-[inter] pt-5 pb-16 scroll-m-10'>
+        <section id='about' className='font-[inter] pt-5 pb-16 scroll-m-10 bg-orange-50'>
             <div className='flex justify-center py-5'>
-                <h1 className='text-center text-5xl font-bold '>Our Story</h1>
+                <h1 className='text-center text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900'>Our Story</h1>
             </div>
             <div className='flex justify-center py-2  pb-5'>
-                <h2 className='text-center text-lg min-[440px]:text-xl text-gray-700 font-semibold'>Authentic flavors, crafted with tradition</h2>
+                <h2 className='text-center text-base min-[440px]:text-xl text-gray-700 font-semibold'>Authentic flavors, crafted with tradition</h2>
             </div>
             <div className='w-full pl-5 pr-4 min-[600px]:px-10'>
                 <div className='flex flex-col min-[906px]:flex-row  min-[906px]:justify-between items-center max-[906px]:gap-5'>
