@@ -37,6 +37,7 @@ const Footer = () => {
                     <ul className="space-y-2 text-base sm:text-lg ml-1.5 mt-1">
                         <li><button aria-label="Go to About section" onClick={() => handleScroll("about")} className="cursor-pointer hover:text-[#f59e0b] font-medium active:scale-95 active:text-[#f59e0b] transition duration-300">About</button></li>
                         <li><button aria-label="Go to Menu section" onClick={() => handleScroll("menu")} className="cursor-pointer hover:text-[#f59e0b] font-medium active:scale-95 active:text-[#f59e0b] transition duration-300">Menu</button></li>
+                        <li><button aria-label="Go to booking section" onClick={() => handleScroll("booking")} className="cursor-pointer hover:text-[#f59e0b] font-medium active:scale-95 active:text-[#f59e0b] transition duration-300">Book Table</button></li>
                         <li><button aria-label="Go to Contact section" onClick={() => handleScroll("contact")} className="cursor-pointer hover:text-[#f59e0b] font-medium active:scale-95 active:text-[#f59e0b] transition duration-300">Contact</button></li>
                     </ul>
                 </div>
