@@ -26,7 +26,7 @@ const Navbar = () => {
         },
         {
             label: "Book Table",
-            to: "contact"
+            to: "booking"
         }
     ]
     const handleScroll = (id) => {
@@ -93,7 +93,7 @@ const Navbar = () => {
                                 >
                                     <button
                                         onClick={() => {
-                                            handleScroll("contact");
+                                            handleScroll("booking");
                                             setIsOpen(false);
                                         }}
                                         className="w-full bg-[#f59e0b] text-white font-semibold py-3 rounded-xl hover:scale-[1.02] active:scale-95 transition-all duration-300 cursor-pointer"
