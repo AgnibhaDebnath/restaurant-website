@@ -2,7 +2,7 @@ import React from 'react'
 import About_section_image from "../assets/images/About_section_image.jpg"
 const About = () => {
     return (
-        <section id='about' className='font-[inter] pt-5 pb-16 scroll-m-10 bg-orange-50'>
+        <section id='about' className='font-[inter] pt-5 pb-16 scroll-m-17 bg-orange-50'>
             <div className='flex justify-center py-5'>
                 <h1 className='text-center text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900'>Our Story</h1>
             </div>
