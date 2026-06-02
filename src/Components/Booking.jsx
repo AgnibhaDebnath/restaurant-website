@@ -1,9 +1,30 @@
 import { useState } from "react";
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
-
 import { FaCalendarAlt, FaUtensils } from "react-icons/fa";
 import { IoIosArrowDown } from "react-icons/io";
+import { z } from "zod";
+
+const bookingSchema = z.object({
+    name: z
+        .string()
+        .trim()
+        .min(2, "Please enter a valid name"),
+    phoneNumber: z
+        .string()
+        .trim()
+        .regex(/^[0-9]{10}$/, "Please enter a valid 10-digit phone number"),
+    email: z
+        .string()
+        .trim()
+        .email("Please enter a valid email address"),
+    selectedDate: z
+        .date("Please select a reservation date"),
+    selectedTime: z
+        .string()
+        .min(1, "Please select a reservation time"),
+    guests: z
+        .string()
+        .min(1, "Select number of guests"),
+});
 
 const timeSlots = [
     "6:00 PM",
@@ -33,22 +54,41 @@ const next7Days = Array.from({ length: 7 }, (_, index) => {
 });
 const guestOptions = ["1", "2", "3", "4", "5", "6+"];
 
-const Booking = () => {
-    const [name, setName] = useState("");
-    const [email, setEmail] = useState("");
-    const [phoneNumber, setPhoneNumber] = useState("");
-    const [selectedDate, setSelectedDate] = useState(null);
-    const [selectedTime, setSelectedTime] = useState("");
-    const [guests, setGuests] = useState("");
-    const [specialRequest, setSpecialRequest] = useState("");
 
+const Booking = () => {
+    const [formData, setFormData] = useState({
+        name: "",
+        email: "",
+        phoneNumber: "",
+        selectedDate: null,
+        selectedTime: "",
+        guests: "",
+        specialRequest: ""
+    })
+    const [errors, setErrors] = useState({});
     const handleBooking = (e) => {
         e.preventDefault();
-        console.log("Form submitted");
+        const result = bookingSchema.safeParse(formData);
+        if (!result.success) {
+            const fieldErrors = result.error.flatten().fieldErrors;
+
+            setErrors({
+                name: fieldErrors.name?.[0],
+                email: fieldErrors.email?.[0],
+                phoneNumber: fieldErrors.phoneNumber?.[0],
+                selectedDate: fieldErrors.selectedDate?.[0],
+                selectedTime: fieldErrors.selectedTime?.[0],
+                guests: fieldErrors.guests?.[0],
+            });
+
+            return;
+        }
+        console.log("form submitted")
+
     }
 
     return (
-        <section className="px-3 min-[400px]:px-5 min-[450px]:px-10 py-10 bg-gray-50">
+        <section id="booking" className="px-3 min-[400px]:px-5 min-[450px]:px-10 py-10 bg-gray-50 scroll-m-15">
             <div className="text-center mb-12">
                 <div className="flex items-center justify-center gap-3 mb-4">
                     ────   < FaUtensils size={30} /> ────
@@ -71,45 +111,91 @@ const Booking = () => {
                 <form className="w-full max-w-3xl bg-white rounded-4xl py-12 px-6 min-[400px]:px-8 min-[550px]:px-16 shadow-xl hover:shadow-2xl transition-all duration-300">
 
                     {/* Name */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 ">
-                        <input
-                            type="text"
-                            placeholder="Full Name"
-                            value={name}
-                            onChange={(e) => setName(e.target.value)}
-                            className="w-11/12 min-[380px]:w-10/12 border border-gray-300 rounded-2xl px-4 py-3 mb-4 focus:outline-none focus:border-[#f59e0b] h-11 focus:ring-1 focus:ring-[#f59e0b] font-[inter]"
-                        />
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-10">
+                        <div>
+                            <input
+                                type="text"
+                                placeholder="Full Name"
+                                value={formData.name}
+                                onChange={(e) => {
+                                    const value = e.target.value;
+                                    setFormData((prev) => ({ ...prev, name: value }));
 
+                                    if (errors.name) {
+                                        const result = bookingSchema.shape.name.safeParse(value);
+
+                                        setErrors(prev => ({
+                                            ...prev,
+                                            name: result.success
+                                                ? undefined
+                                                : result.error.issues[0].message,
+                                        }));
+                                    }
+                                }}
+                                className={`w-11/12 min-[380px]:w-10/12 border ${errors.name ? "border-red-500" : "border-gray-300"}  rounded-2xl px-4 py-3 ${errors.name ? "focus:outline-none focus:border-red-500 focus:ring-1 focus:ring-red-500" : "focus:outline-none focus:border-[#f59e0b] focus:ring-1 focus:ring-[#f59e0b]"}  h-11 font-[inter]`}
+                            />
+                            {errors.name && <p className="text-xs font-medium ml-3 font-[inter] mt-1 text-red-500">{errors.name}</p>}
+                        </div>
                         {/* Email */}
                         <div>
                             <input
                                 type="email"
                                 placeholder="Email Address"
-                                value={email}
-                                onChange={(e) => setEmail(e.target.value)}
-                                className="w-11/12 min-[380px]:w-10/12 h-11 border border-gray-300 rounded-2xl px-4 py-3 mb-1 focus:outline-none focus:border-[#f59e0b] focus:ring-1 focus:ring-[#f59e0b] font-[inter]"
+                                value={formData.email}
+                                onChange={(e) => {
+                                    const value = e.target.value;
+                                    setFormData((prev) => ({ ...prev, email: value }));
+                                    if (errors.email) {
+                                        const result = bookingSchema.shape.email.safeParse(value);
+                                        setErrors(prev => ({
+                                            ...prev,
+                                            email: result.success
+                                                ? undefined
+                                                : result.error.issues[0].message,
+                                        }));
+                                    }
+                                }}
+                                className={`w-11/12 min-[380px]:w-10/12 border ${errors.email ? "border-red-500" : "border-gray-300"}  rounded-2xl px-4 py-3 ${errors.email ? "focus:outline-none focus:border-red-500 focus:ring-1 focus:ring-red-500" : "focus:outline-none focus:border-[#f59e0b] focus:ring-1 focus:ring-[#f59e0b]"}  h-11 font-[inter]`}
                             />
 
-                            <p className="text-xs text-gray-300 mb-4 ml-3 font-[inter]">
-                                We'll send booking confirmation to your email.
+                            {errors.email ? <p className="text-xs font-medium text-red-500 mt-1 ml-3 font-[inter]">
+                                {errors.email}
                             </p>
+                                : <p className="text-xs text-gray-300 mt-1 ml-3 font-[inter]">
+                                    We'll send booking confirmation to your email.
+                                </p>
+                            }
                         </div>
                         {/* Phone */}
+                        <div>
+                            <input
+                                type="tel"
+                                placeholder="Phone Number"
+                                value={formData.phoneNumber}
+                                onChange={(e) => {
+                                    const value = e.target.value;
+                                    setFormData((prev) => ({ ...prev, phoneNumber: value }));
 
-                        <input
-                            type="tel"
-                            placeholder="Phone Number"
-                            value={phoneNumber}
-                            onChange={(e) => setPhoneNumber(e.target.value)}
-                            className="w-11/12 min-[380px]:w-10/12 border border-gray-300 rounded-2xl px-4 py-3 mb-6 focus:outline-none h-11  focus:border-[#f59e0b] focus:ring-1 focus:ring-[#f59e0b] font-[inter]"
-                        />
-
+                                    if (errors.phoneNumber) {
+                                        const result = bookingSchema.shape.phoneNumber.safeParse(value);
+                                        setErrors(prev => ({
+                                            ...prev,
+                                            phoneNumber: result.success
+                                                ? undefined
+                                                : result.error.issues[0].message,
+                                        }));
+                                    }
+                                }}
+                                className={`w-11/12 min-[380px]:w-10/12 border ${errors.phoneNumber ? "border-red-500" : "border-gray-300"}  rounded-2xl px-4 py-3 ${errors.phoneNumber ? "focus:outline-none focus:border-red-500 focus:ring-1 focus:ring-red-500" : "focus:outline-none focus:border-[#f59e0b] focus:ring-1 focus:ring-[#f59e0b]"}  h-11 font-[inter]`}
+                            />
+                            {errors.phoneNumber && <p className="text-xs font-medium text-red-500 mt-1 ml-3 font-[inter]">{errors.phoneNumber}</p>}
+                        </div>
 
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div className="grid grid-cols-1 md:grid-cols-2 ">
                         {/* Date */}
-                        <div className="mb-6">
+                        <div className="mb-6 md:pr-3">
                             <label className="block text-sm font-semibold text-gray-700 mb-3 font-[inter]">
                                 Choose Date
                             </label>
@@ -119,8 +205,15 @@ const Booking = () => {
                                     <button
                                         key={day.label}
                                         type="button"
-                                        onClick={() => setSelectedDate(day.value)}
-                                        className={`min-w-30 px-5 py-1.5 rounded-xl  text-sm font-medium transition-all duration-300 ${selectedDate?.toDateString() === day.value.toDateString()
+                                        onClick={() => {
+                                            const value = day.value;
+                                            setFormData((prev) => ({ ...prev, selectedDate: value }));
+                                            if (errors.selectedDate) {
+                                                const result = bookingSchema.shape.selectedDate.safeParse(value);
+                                                setErrors((prev) => ({ ...prev, selectedDate: result.success ? undefined : error.issues[0].message }))
+                                            }
+                                        }}
+                                        className={`min-w-30 px-5 py-1.5 rounded-xl  text-sm font-medium transition-all duration-300 ${formData.selectedDate?.toDateString() === day.value.toDateString()
                                             ? "bg-linear-to-r from-orange-500 to-amber-400 text-white shadow-md"
                                             : "bg-gray-50 border border-gray-200 hover:border-[#f59e0b] hover:text-[#f59e0b] cursor-pointer"
                                             }`}
@@ -129,11 +222,11 @@ const Booking = () => {
                                     </button>
                                 ))}
                             </div>
-
+                            {errors.selectedDate && <p className="text-xs font-medium text-red-500 mt-1 ml-3 font-[inter]">{errors.selectedDate}</p>}
                         </div>
 
                         {/* Time */}
-                        <div className="mb-6">
+                        <div className="mb-6 md:pl-3 md:border-l">
                             <label className="block text-sm font-semibold text-gray-700 mb-3 font-[inter]">
                                 Choose Time
                             </label>
@@ -143,8 +236,16 @@ const Booking = () => {
                                     <button
                                         key={slot}
                                         type="button"
-                                        onClick={() => setSelectedTime(slot)}
-                                        className={`min-w-30 rounded-xl py-1.5 text-sm font-medium transition-all duration-300 ${selectedTime === slot
+                                        onClick={() => {
+                                            const value = slot;
+
+                                            setFormData((prev) => ({ ...prev, selectedTime: value }));
+                                            if (errors.selectedTime) {
+                                                const result = bookingSchema.shape.selectedTime.safeParse(value);
+                                                setErrors((prev) => ({ ...prev, selectedTime: result.success ? undefined : error.issues[0].message }))
+                                            }
+                                        }}
+                                        className={`min-w-30 rounded-xl py-1.5 text-sm font-medium transition-all duration-300 ${formData.selectedTime === slot
                                             ? "bg-linear-to-r from-orange-500 to-amber-400 text-white shadow-md"
                                             : "bg-gray-50 border border-gray-200 hover:border-[#f59e0b] hover:text-[#f59e0b] cursor-pointer"
                                             }`}
@@ -153,6 +254,7 @@ const Booking = () => {
                                     </button>
                                 ))}
                             </div>
+                            {errors.selectedTime && <p className="text-xs font-medium text-red-500 mt-1 ml-3 font-[inter]">{errors.selectedTime}</p>}
                         </div>
                     </div>
 
@@ -168,8 +270,15 @@ const Booking = () => {
                                 <button
                                     key={guest}
                                     type="button"
-                                    onClick={() => setGuests(guest)}
-                                    className={`rounded-xl py-2 text-sm font-medium transition-all duration-300 ${guests === guest
+                                    onClick={() => {
+                                        const value = guest;
+                                        setFormData((prev) => ({ ...prev, guests: value }));
+                                        if (errors.guests) {
+                                            const result = bookingSchema.shape.guests.safeParse(value);
+                                            setErrors((prev) => ({ ...prev, guests: result.success ? undefined : error.issues[0].message }))
+                                        }
+                                    }}
+                                    className={`rounded-xl py-2 text-sm font-medium transition-all duration-300 ${formData.guests === guest
                                         ? "bg-linear-to-r from-orange-500 to-amber-400 text-white shadow-md"
                                         : "bg-gray-50 border border-gray-200 hover:border-[#f59e0b] hover:text-[#f59e0b] cursor-pointer"
                                         }`}
@@ -178,15 +287,16 @@ const Booking = () => {
                                 </button>
                             ))}
                         </div>
+                        {errors.guests && <p className="text-xs font-medium text-red-500 mt-1 ml-3 font-[inter]">{errors.guests}</p>}
                     </div>
                     {/*special request*/}
-                    <textarea value={specialRequest} onChange={e => setSpecialRequest(e.target.value)} placeholder="Special request(optional)" className="w-full min-[380px]:w-10/12 [540px]:w-8/12 h-13 border border-gray-300 rounded-2xl px-4 py-3 mb-1 focus:outline-none focus:border-[#f59e0b] focus:ring-1 focus:ring-[#f59e0b] font-[inter] text-base"></textarea>
+                    <textarea value={formData.specialRequest} onChange={e => setFormData((prev) => ({ ...prev, specialRequest: e.target.value }))} placeholder="Special request(optional)" className="w-full min-[380px]:w-10/12 [540px]:w-8/12 h-13 border border-gray-300 rounded-2xl px-4 py-3 mb-1 focus:outline-none focus:border-[#f59e0b] focus:ring-1 focus:ring-[#f59e0b] font-[inter] text-base"></textarea>
                     {/* CTA */}
 
                     <button
                         onClick={handleBooking}
                         type="submit"
-                        className="w-full bg-linear-to-r from-orange-500 to-amber-400 text-white font-semibold py-3 rounded-xl shadow-md hover:shadow-lg hover:scale-[1.02] active:scale-95 transition-all duration-300 cursor-pointer"
+                        className="w-full bg-linear-to-r from-orange-500 to-amber-400 text-white font-semibold py-3 rounded-xl shadow-md hover:shadow-lg hover:scale-[1.02] active:scale-99 transition-all duration-300 cursor-pointer"
                     >
                         Book a Table
                     </button>
