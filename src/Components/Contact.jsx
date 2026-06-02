@@ -81,7 +81,7 @@ const Contact = () => {
                                     <div>
                                         <p className="text-gray-600 ">Opening Hours</p>
                                         <p className="text-lg font-medium">Mon – Sun</p>
-                                        <div className="px-3 py-1 text-green-600 bg-green-100 rounded-3xl">11:00 AM - 10:30 PM</div>
+                                        <div className="px-3 py-1 text-green-600 bg-green-100 rounded-3xl">11:00 AM - 12:00 AM</div>
                                     </div>
                                 </div>
 
