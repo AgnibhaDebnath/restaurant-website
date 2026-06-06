@@ -1,8 +1,8 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { FaCalendarAlt, FaUtensils } from "react-icons/fa";
 import { IoIosArrowDown } from "react-icons/io";
 import { z } from "zod";
-
+import SuccessCard from "./SuccessCard";
 const bookingSchema = z.object({
     name: z
         .string()
@@ -66,6 +66,14 @@ const Booking = () => {
         specialRequest: ""
     })
     const [errors, setErrors] = useState({});
+    const [formSubmitted, setFormSubmitted] = useState(false);
+    const [isSuccess, setIsSuccess] = useState(false);
+
+    const handleScroll = (id) => {
+        document.getElementById(id).scrollIntoView({
+            behavior: "smooth"
+        });
+    };
     const handleBooking = (e) => {
         e.preventDefault();
         const result = bookingSchema.safeParse(formData);
@@ -83,9 +91,35 @@ const Booking = () => {
 
             return;
         }
-        console.log("form submitted")
-
+        console.log("Form submitted");
+        setFormSubmitted(true);
+        setIsSuccess(true);
+        setFormSubmitted(false);
     }
+    useEffect(() => {
+        if (!isSuccess) return;
+
+        const timer = setTimeout(() => {
+            setIsSuccess(false);
+            setFormData({
+                name: "",
+                email: "",
+                phoneNumber: "",
+                selectedDate: null,
+                selectedTime: "",
+                guests: "",
+                specialRequest: ""
+            })
+        }, 7000);
+
+        return () => clearTimeout(timer);
+    }, [isSuccess]);
+
+    useEffect(() => {
+        if (!isSuccess) return;
+        handleScroll("SuccessCard");
+    }, [isSuccess]);
+
 
     return (
         <section id="booking" className="px-3 min-[400px]:px-5 min-[450px]:px-10 py-10 bg-gray-50 scroll-m-15">
@@ -107,6 +141,7 @@ const Booking = () => {
                     exceptional hospitality, and a memorable dining experience.
                 </p>
             </div>
+            {isSuccess && <SuccessCard date={formData.selectedDate} time={formData.selectedTime} guests={formData.guests} />}
             <div className="flex justify-center">
                 <form className="w-full max-w-3xl bg-white rounded-4xl py-12 px-6 min-[400px]:px-8 min-[550px]:px-16 shadow-xl hover:shadow-2xl transition-all duration-300">
 
@@ -295,6 +330,7 @@ const Booking = () => {
 
                     <button
                         onClick={handleBooking}
+                        disabled={formSubmitted}
                         type="submit"
                         className="w-full bg-linear-to-r from-orange-500 to-amber-400 text-white font-semibold py-3 rounded-xl shadow-md hover:shadow-lg hover:scale-[1.02] active:scale-99 transition-all duration-300 cursor-pointer"
                     >
