@@ -54,7 +54,7 @@ const Hero = () => {
                                 <h2 className='text-center font-[inter] tracking-wide font-semibold  text-white text-xs min-[575px]:text-sm min-[700px]:text-base min-[810px]:text-xl drop-shadow-lg'>{slide.subHeading}</h2>
                             </div>
                             <div className='flex justify-center mt-5'>
-                                <button onClick={() => handleScroll("contact")} className='px-8 sm:px-10 py-1.5 cursor-pointer hover:scale-105  rounded-lg text-white font-semibold bg-linear-to-r from-orange-500 to-amber-400 font-[inter] text-base sm:text-lg  max-[768px]:active:scale-95 transition duration-300 hover:-translate-y-1'>Book Table</button>
+                                <button onClick={() => handleScroll("booking")} className='px-8 sm:px-10 py-1.5 cursor-pointer hover:scale-105  rounded-lg text-white font-semibold bg-linear-to-r from-orange-500 to-amber-400 font-[inter] text-base sm:text-lg  max-[768px]:active:scale-95 transition duration-300 hover:-translate-y-1'>Book Table</button>
                             </div>
                         </div>
                     </SwiperSlide>
